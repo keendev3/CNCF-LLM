@@ -201,7 +201,6 @@ RUN . .vllm/bin/activate && \
     uv pip install --upgrade pip && \
     uv pip install torch==2.7.0
 
-
 # Install vllm editable
 RUN . .vllm/bin/activate && \
     VLLM_USE_PRECOMPILED=1 pip install --editable .
@@ -209,6 +208,7 @@ RUN . .vllm/bin/activate && \
 # Install related packages
 RUN . .vllm/bin/activate && \
     uv pip install ../LMCache/ && \
+    uv pip install ../torchac_cuda/ && \
     uv pip install nixl && \
     uv cache clean
 
