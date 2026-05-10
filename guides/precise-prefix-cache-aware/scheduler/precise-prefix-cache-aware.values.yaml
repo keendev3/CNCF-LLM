@@ -58,7 +58,7 @@ inferenceExtension:
           parameters:
             tokenProcessorConfig:
               blockSize: 64           # must match vLLM --block-size
-            speculativeIndexing: false
+            speculativeIndexing: true
             indexerConfig:
               tokenizersPoolConfig:
                 modelName: Qwen/Qwen3-32B
@@ -89,7 +89,6 @@ inferenceExtension:
         - name: default
           plugins:
             - pluginRef: decode-filter
-            - pluginRef: tokenizer      # next release will support tokenizer as data-producer
             - pluginRef: kv-cache-utilization-scorer
               weight: 2.0
             - pluginRef: queue-scorer
@@ -97,7 +96,7 @@ inferenceExtension:
             - pluginRef: precise-prefix-cache-scorer
               weight: 3.0
             - pluginRef: no-hit-lru-scorer
-              weight: 1.0
+              weight: 2.0
             - pluginRef: max-score-picker
 
 inferencePool:
